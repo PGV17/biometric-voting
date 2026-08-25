@@ -1,0 +1,405 @@
+/* ==========================================================================
+   Layout & Container
+   ========================================================================== */
+.votingContainer {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background-light) 100%);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  border: var(--border-width) solid var(--color-border);
+  transition: all var(--transition-normal);
+  animation: fadeIn var(--transition-normal);
+}
+
+.votingContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-xl);
+}
+
+/* ==========================================================================
+   Header Styles
+   ========================================================================== */
+.votingHeader {
+  text-align: center;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-md);
+  border-bottom: var(--border-width) solid var(--color-accent);
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.5px;
+  transition: all var(--transition-normal);
+}
+
+/* ==========================================================================
+   Alert Styles
+   ========================================================================== */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, var(--color-error-light) 0%, var(--color-surface) 100%);
+  border: var(--border-width) solid var(--color-error);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-error);
+  transition: all var(--transition-normal);
+  animation: slideIn var(--transition-normal);
+}
+
+.alertIcon {
+  font-size: var(--font-size-lg);
+}
+
+.successAlert {
+  background: linear-gradient(135deg, var(--color-success-light) 0%, var(--color-surface) 100%);
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+/* ==========================================================================
+   Empty State Styles
+   ========================================================================== */
+.emptyStateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background-light) 100%);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  margin: var(--spacing-xl) 0;
+  border: var(--border-width) solid var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-normal);
+}
+
+.emptyStateText {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-family: var(--font-family-headings);
+}
+
+.emptyStateSubtext {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+}
+
+/* ==========================================================================
+   Election List & Card Styles
+   ========================================================================== */
+.electionsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.electionCard {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background-light) 100%);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--box-shadow-md);
+  border: var(--border-width) solid var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.electionCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-lg);
+  border-color: var(--color-accent);
+}
+
+.electionMain {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.electionCard h3 {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-headings);
+}
+
+.electionCard p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.electionDescription {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.electionDetails {
+  display: grid;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: var(--color-background-light);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--color-border);
+}
+
+.electionDetails p {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.electionDetails p strong {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  min-width: 100px;
+}
+
+.electionActions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+/* ==========================================================================
+   Candidate Styles
+   ========================================================================== */
+.candidatesList {
+  margin-top: var(--spacing-lg);
+}
+
+.candidatesList h3 {
+  color: var(--color-accent);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-headings);
+}
+
+.candidatesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.candidateCard {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background-light) 100%);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  border: var(--border-width) solid var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.candidateCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  box-shadow: var(--box-shadow-md);
+}
+
+.selectedCandidate {
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-surface) 100%);
+  box-shadow: var(--box-shadow-md);
+}
+
+.candidateInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.candidateInfo h4 {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-headings);
+}
+
+.candidateInfo p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.candidateDescription {
+  margin-top: var(--spacing-sm) !important;
+  font-size: var(--font-size-sm) !important;
+  color: var(--color-text-secondary) !important;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+.voteButton {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+}
+
+.voteButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.voteButton:disabled {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-text-secondary) 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   Loading States
+   ========================================================================== */
+.loadingSkeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-background-light) 25%,
+    var(--color-surface) 50%,
+    var(--color-background-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: var(--border-radius-md);
+}
+
+.skeletonHeader {
+  height: 40px;
+  width: 200px;
+  margin-bottom: var(--spacing-lg);
+}
+
+.skeletonText {
+  height: 20px;
+  width: 100%;
+  margin-bottom: var(--spacing-sm);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+@media (max-width: 768px) {
+  .votingContainer {
+    margin: var(--spacing-lg) var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .candidatesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Back Button Styles
+   ========================================================================== */
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  margin-bottom: var(--spacing-lg);
+}
+
+.backButton:hover {
+  color: var(--color-surface);
+  transform: translateX(-4px);
+}
+
+.backButton svg {
+  font-size: var(--font-size-lg);
+  transition: transform var(--transition-fast);
+}
+
+.backButton:hover svg {
+  transform: translateX(-4px);
+}
+
+.votedStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.votedIcon {
+  font-size: 1.25rem;
+}

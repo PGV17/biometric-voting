@@ -1,0 +1,212 @@
+/* ==========================================================================
+   Layout & Container
+   ========================================================================== */
+.webcam-section {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background-light) 100%);
+  border: var(--border-width) dashed var(--color-border);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  transition: all var(--transition-normal);
+  animation: fadeIn var(--transition-normal);
+}
+
+.webcam-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-lg);
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-surface) 100%);
+}
+
+/* ==========================================================================
+   Webcam Container & Video Styles
+   ========================================================================== */
+.webcam-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.webcam-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-surface) 100%);
+  border: var(--border-width) solid var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.webcam-video-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-md);
+  border-color: var(--color-accent);
+}
+
+.webcam-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-normal);
+}
+
+.face-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Button & Control Styles
+   ========================================================================== */
+.webcam-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+}
+
+.webcam-controls {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.webcam-controls button {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 100%;
+}
+
+.webcam-controls button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.webcam-controls button:disabled {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-text-secondary) 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.webcam-controls button.btn-secondary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+}
+
+.webcam-controls button.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
+}
+
+.webcam-controls button.btn-danger {
+  background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-accent-hover) 100%);
+}
+
+.webcam-controls button.btn-danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-danger) 100%);
+}
+
+/* ==========================================================================
+   Alert & Message Styles
+   ========================================================================== */
+.alert {
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  animation: slideIn var(--transition-normal);
+  position: relative;
+}
+
+.alert::before {
+  content: '';
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+  background-color: var(--color-danger);
+}
+
+.alert-info {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.alert-info::before {
+  background-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   Animation Styles
+   ========================================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+@media (max-width: 768px) {
+  .webcam-section {
+    margin: var(--spacing-lg) var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .webcam-video-wrapper {
+    max-width: 100%;
+  }
+
+  .webcam-controls {
+    flex-direction: column;
+  }
+
+  .webcam-controls button {
+    width: 100%;
+  }
+}

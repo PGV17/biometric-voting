@@ -1,0 +1,514 @@
+/* ==========================================================================
+   Layout & Container
+   ========================================================================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 160px);
+  padding: var(--spacing-xl);
+}
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+.formWrapper {
+  background-color: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg);
+  width: 100%;
+  max-width: 650px;
+  transition: all var(--transition-normal);
+  animation: fadeIn var(--transition-normal);
+  border: 1px solid var(--color-border);
+}
+
+.formWrapper:hover {
+  box-shadow: var(--box-shadow-xl);
+  transform: translateY(-2px);
+}
+
+.formTitle {
+  font-family: var(--font-family-headings);
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+  transition: color var(--transition-normal);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.5px;
+}
+
+.form {
+  width: 100%;
+}
+
+/* Form Groups & Inputs */
+.formGroup {
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  position: relative;
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-normal);
+}
+
+.inputIcon {
+  color: var(--color-accent);
+  font-size: 1.1em;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="email"],
+.formGroup input[type="password"],
+.formGroup input[type="tel"] {
+  width: 100%;
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  box-sizing: border-box;
+  font-size: var(--font-size-md);
+  background-color: var(--color-background-light);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+}
+
+.formGroup input[type="text"]:hover,
+.formGroup input[type="email"]:hover,
+.formGroup input[type="password"]:hover,
+.formGroup input[type="tel"]:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-accent-light);
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="email"]:focus,
+.formGroup input[type="password"]:focus,
+.formGroup input[type="tel"]:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+  background-color: var(--color-surface);
+  transform: translateY(-1px);
+}
+
+.inputError {
+  border-color: var(--color-danger) !important;
+  background-color: var(--color-danger-light) !important;
+}
+
+.errorText {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  display: block;
+}
+
+/* Password Input Specific */
+.passwordInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: var(--spacing-md);
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  border-radius: var(--border-radius-sm);
+}
+
+.passwordToggle:hover {
+  color: var(--color-primary);
+  background-color: transparent;
+  transform: scale(1.1);
+}
+
+.passwordToggle:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+.button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  transition: all var(--transition-fast);
+  width: 100%;
+  margin-top: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.button:disabled {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-text-secondary) 100%);
+  color: white;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.button:hover:not(:disabled) {
+  box-shadow: var(--box-shadow-md);
+  transform: translateY(-2px);
+}
+
+.button:hover:not(:disabled)::after {
+  opacity: 1;
+}
+
+.button:active:not(:disabled) {
+  box-shadow: var(--box-shadow-sm);
+  transform: translateY(0);
+}
+
+.button.loading {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.buttonSecondary {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+  color: white;
+  margin-top: var(--spacing-sm);
+  width: auto;
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.buttonSecondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
+}
+
+.buttonDanger {
+  background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-accent-hover) 100%);
+  color: white;
+  width: auto;
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.buttonDanger:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-danger) 100%);
+}
+
+/* ==========================================================================
+   Alert & Message Styles
+   ========================================================================== */
+.alert {
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  animation: slideIn var(--transition-normal);
+  position: relative;
+  border: 1px solid var(--color-danger);
+}
+
+.alert::before {
+  content: '';
+  width: 4px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
+  background-color: var(--color-danger);
+}
+
+.alertIcon {
+  font-size: 1.2em;
+}
+
+.message {
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border-width: var(--border-width);
+  border-style: solid;
+  transition: all var(--transition-normal);
+  animation: slideIn var(--transition-normal);
+}
+
+.errorMessage {
+  color: var(--color-danger);
+  background-color: var(--color-danger-light);
+  border-color: var(--color-danger);
+}
+
+.infoMessage {
+  color: var(--color-info);
+  background-color: var(--color-info-light);
+  border-color: var(--color-info);
+}
+
+.successMessage {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background-color: var(--color-success-light);
+  border: var(--border-width) solid var(--color-success);
+  border-radius: var(--border-radius-lg);
+  color: var(--color-success);
+  animation: fadeIn var(--transition-normal);
+}
+
+.successMessage h2 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-md);
+}
+
+.successMessage p {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Steps Styles
+   ========================================================================== */
+.stepsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  padding: 0 var(--spacing-md);
+}
+
+.stepsContainer::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  transition: all var(--transition-normal);
+}
+
+.step.active .stepNumber {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.step.completed .stepNumber {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  background-color: var(--color-success-light);
+}
+
+.stepLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  transition: color var(--transition-normal);
+}
+
+.step.active .stepLabel {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.step.completed .stepLabel {
+  color: var(--color-success);
+}
+
+/* ==========================================================================
+   Webcam Styles
+   ========================================================================== */
+.webcamContainer {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  border: var(--border-width) dashed var(--color-border);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-surface);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.webcamContainer:hover {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-light);
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.webcamVideo {
+  border-radius: var(--border-radius-md);
+  max-width: 100%;
+  height: auto;
+  border: var(--border-width) solid var(--color-border);
+  margin-bottom: var(--spacing-md);
+  display: block;
+  background-color: var(--color-background-light);
+  transition: all var(--transition-normal);
+}
+
+.webcamVideo:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--box-shadow-md);
+}
+
+.faceCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.biometricDescription {
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+/* ==========================================================================
+   Link Styles
+   ========================================================================== */
+.link {
+  display: block;
+  margin-top: var(--spacing-lg);
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-accent-hover);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Loading & Animation Styles
+   ========================================================================== */
+.loadingSpinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-surface);
+  border-radius: 50%;
+  border-top-color: var(--color-accent);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
