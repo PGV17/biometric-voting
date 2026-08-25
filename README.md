@@ -13,40 +13,7 @@ A full-stack electronic voting web application that verifies voter identity usin
 
 ---
 
-## System Workflow
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Voter
-    participant Frontend as React Client
-    participant Backend as Express Server
-    participant DB as MongoDB
-
-    Note over Voter,DB: 1. Registration
-    Voter->>Frontend: Fill details & Capture face
-    Frontend->>Frontend: Extract 128D facial descriptor
-    Frontend->>Backend: POST /api/auth/register
-    Backend->>Backend: Encrypt descriptor with AES-256-CBC
-    Backend->>DB: Save Voter profile & hashed password
-
-    Note over Voter,DB: 2. Two-Factor Authentication
-    Voter->>Frontend: Enter credentials (Email/ID + Password)
-    Frontend->>Backend: POST /api/auth/validate-credentials
-    Voter->>Frontend: Capture live facial descriptor
-    Frontend->>Backend: POST /api/auth/login (Credentials + Descriptor)
-    Backend->>Backend: Decrypt stored template & compute Euclidean distance (<= 0.6)
-    Backend-->>Frontend: Issue JWT Auth Token
-
-    Note over Voter,DB: 3. Atomic Ballot Casting
-    Voter->>Frontend: Select candidate & submit ballot
-    Frontend->>Backend: POST /api/voters/vote
-    Backend->>DB: Check voter eligibility in MongoDB transaction session
-    Backend->>DB: Record vote, mark voter as voted, increment tally
-    Backend-->>Frontend: 201 Vote Recorded
-```
-
----
 
 ## Important Scripts & Quick Start
 
