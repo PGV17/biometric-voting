@@ -19,7 +19,8 @@ const VotingPage = () => {
     try {
       const token = localStorage.getItem('voterToken');
       if (!token) {
-        navigate('/voter/login');
+        navigate('/login');
+        setLoading(false);
         return;
       }
 
@@ -28,7 +29,7 @@ const VotingPage = () => {
     } catch (err) {
       if (err.response && err.response.status === 401) {
         localStorage.removeItem('voterToken');
-        navigate('/voter/login');
+        navigate('/login');
       } else if (err.response && err.response.data && err.response.data.message) {
         setError(err.response.data.message);
       } else {
