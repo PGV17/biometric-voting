@@ -1,1 +1,0 @@
-import{f as e,n as t}from"./utils-BoE_Ellr.js";var n=e(),r=({className:e,...r})=>(0,n.jsx)(`div`,{className:t(`animate-pulse rounded-md bg-line/80`,e),"aria-hidden":`true`,...r});export{r as t};

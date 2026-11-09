@@ -14,7 +14,7 @@ export const loadModels = async () => {
 
   loadingPromise = new Promise(async (resolve, reject) => {
     try {
-      const MODEL_URL = process.env.PUBLIC_URL + '/models';
+      const MODEL_URL = (process.env.PUBLIC_URL || '') + '/models';
       await Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
         faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
