@@ -56,10 +56,12 @@ router.get('/stats', protect(Admin), async (req, res) => {
 // @desc    Get audit logs
 // @route   GET /api/admins/audit-logs
 // @access  Private (Admin only)
+const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 router.get('/audit-logs', protect(Admin), async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const page = Math.max(1, parseInt(req.query.page) || 1);
+    const limit = Math.min(100, Math.max(1, parseInt(req.query.limit) || 10));
     const skip = (page - 1) * limit;
     const actionType = req.query.actionType || '';
     const searchTerm = req.query.search || '';
@@ -76,15 +78,15 @@ router.get('/audit-logs', protect(Admin), async (req, res) => {
       const matchingUsers = await Promise.all([
         Admin.find({
           $or: [
-            { username: { $regex: searchTerm, $options: 'i' } },
-            { email: { $regex: searchTerm, $options: 'i' } }
+            { username: { $regex: escapeRegex(searchTerm), $options: 'i' } },
+            { email: { $regex: escapeRegex(searchTerm), $options: 'i' } }
           ]
         }).select('_id'),
         Voter.find({
           $or: [
-            { name: { $regex: searchTerm, $options: 'i' } },
-            { email: { $regex: searchTerm, $options: 'i' } },
-            { nationalID: { $regex: searchTerm, $options: 'i' } }
+            { name: { $regex: escapeRegex(searchTerm), $options: 'i' } },
+            { email: { $regex: escapeRegex(searchTerm), $options: 'i' } },
+            { nationalID: { $regex: escapeRegex(searchTerm), $options: 'i' } }
           ]
         }).select('_id')
       ]);
@@ -94,15 +96,15 @@ router.get('/audit-logs', protect(Admin), async (req, res) => {
 
       // Build the search query
       query.$or = [
-        { 'details': { $regex: searchTerm, $options: 'i' } },
-        { 'details.action': { $regex: searchTerm, $options: 'i' } },
-        { 'details.reason': { $regex: searchTerm, $options: 'i' } },
-        { 'details.error': { $regex: searchTerm, $options: 'i' } },
-        { 'details.message': { $regex: searchTerm, $options: 'i' } },
-        { 'details.nationalID': { $regex: searchTerm, $options: 'i' } },
-        { 'details.email': { $regex: searchTerm, $options: 'i' } },
-        { 'details.username': { $regex: searchTerm, $options: 'i' } },
-        { 'details.name': { $regex: searchTerm, $options: 'i' } },
+        { 'details': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.action': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.reason': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.error': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.message': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.nationalID': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.email': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.username': { $regex: escapeRegex(searchTerm), $options: 'i' } },
+        { 'details.name': { $regex: escapeRegex(searchTerm), $options: 'i' } },
         { 'userId': { $in: [...adminIds, ...voterIds] } }
       ];
     }
