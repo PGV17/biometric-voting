@@ -280,7 +280,8 @@ router.post('/vote', protect(Voter), async (req, res) => {
     }
 
     // Check if voter has already voted in this election
-    if (voter.votedElections.includes(electionId)) {
+    // votedElections stores ObjectIds; request body provides strings, so compare via toString()
+    if (voter.votedElections.some((id) => id.toString() === electionId)) {
       await session.abortTransaction();
       session.endSession();
       logAudit('VOTE_CAST_FAILURE', {
@@ -301,7 +302,7 @@ router.post('/vote', protect(Voter), async (req, res) => {
       return res.status(404).json({ message: 'Election not found.' });
     }
 
-    if (!election.candidates.includes(candidateId)) {
+    if (!election.candidates.some((id) => id.toString() === candidateId)) {
       await session.abortTransaction();
       session.endSession();
       return res.status(400).json({ message: 'Invalid candidate for this election.' });

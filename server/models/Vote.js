@@ -7,12 +7,13 @@ const voteSchema = new mongoose.Schema({
     required: true,
   },
   candidateId: {
-    type: String, // For simplicity, using String. Could be ObjectId if candidates are in a separate collection.
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Candidate',
     required: true,
   },
   electionId: {
-    type: String, // For simplicity, e.g., "presidential_2024"
-    default: 'presidential_2024', // Hardcoding for this specific election
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Election',
     required: true,
   },
   timestamp: {
